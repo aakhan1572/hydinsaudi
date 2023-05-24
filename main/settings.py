@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     "vendor",
     "ads",
     "storages",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
@@ -218,22 +219,18 @@ SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-import socket
-if socket.gethostname()=="amjad":
-    from local_settings import *
-
-
 
 # SITE SECURITY (security)
 SECURE_SSL_REDIRECT = False
 if DEBUG is False:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     CSRF_COOKIE_SECURE = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_BROWSER_XSS_FILTER = True
     SESSION_COOKIE_SECURE = True
     #X_FRAME_OPTIONS = 'DENY'
     SECURE_SSL_REDIRECT = True
-    SECURE_HSTS_SECONDS = 17068000 # > 6 months (197 days)
+    SECURE_HSTS_SECONDS = 31536000 # > 6 months (197 days)
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     #DEFAULT_FILE_STORAGE = env('DEFAULT_FILE_STORAGE')
@@ -259,6 +256,9 @@ if DEBUG is False:
     }
 
 else:
+    SECURE_SSL_REDIRECT=False
+    SESSION_COOKIE_SECURE=False
+    CSRF_COOKIE_SECURE=False
     DATABASES = {
         "default": {
             'ENGINE': env('ENGINE'),
