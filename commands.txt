@@ -366,6 +366,8 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 
 
+(hydinsaudi) C:\hydinsaudi>
+(hydinsaudi) C:\hydinsaudi>python manage.py runserver_plus --cert-file cert+7.pem --key-file  cert+7-key.pem
 
 
 
