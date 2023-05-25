@@ -243,7 +243,7 @@ if DEBUG is False:
     STATICFILES_STORAGE=env('STATICFILES_STORAGE')
     #AWS_S3_CUSTOM_DOMAIN=env('AWS_S3_CUSTOM_DOMAIN')
     AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-    print(f"AWS_SECRET_ACCESS_KEY = {AWS_SECRET_ACCESS_KEY}")
+    #print(f"AWS_SECRET_ACCESS_KEY = {AWS_SECRET_ACCESS_KEY}")
     DATABASES = {
         "default": {
             'ENGINE': env('ENGINE'),
@@ -278,10 +278,10 @@ else:
 
 
 
-print(f"SECURE_SSL_REDIRECT = {SECURE_SSL_REDIRECT}")
-print(f"SECRET_KEY = {SECRET_KEY}")
+#print(f"SECURE_SSL_REDIRECT = {SECURE_SSL_REDIRECT}")
+#print(f"SECRET_KEY = {SECRET_KEY}")
 
-if DEBUG == True:
-    print('True')
-else:
-    print('False')
+#if DEBUG == True:
+#    print('True')
+#else:
+#    print('False')
