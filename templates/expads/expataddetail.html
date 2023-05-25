@@ -59,8 +59,8 @@
                 <a href="{% url 'interested' expatads.id %}" class="btn btn-outline-info font-weight-bold text-info rounded-pill" >Get phone Details</a>
                 {% if uservalue %}
                     <a href="{% url 'updatead' expatads.id %}" class="btn btn-outline-info font-weight-bold text-info rounded-pill">Update</a>      
-                    <a href="{% url 'edit_ad' expatads.id %}" class="btn btn-outline-info font-weight-bold text-info rounded-pill">Edit</a>             
-<!--                     <form action="{% url 'deletead' expatads.id %}" method="post" enctype="multipart/form-data" class="d-inline ">
+<!--                     <a href="{% url 'edit_ad' expatads.id %}" class="btn btn-outline-info font-weight-bold text-info rounded-pill">Edit</a>             
+                    <form action="{% url 'deletead' expatads.id %}" method="post" enctype="multipart/form-data" class="d-inline ">
                         {% csrf_token %}
                         
                         <input type="submit" class="btn btn-outline-danger font-weight-bold text-info rounded-pill text-4xl" value="Delete">
