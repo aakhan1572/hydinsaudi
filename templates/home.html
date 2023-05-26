@@ -72,7 +72,7 @@
 
 
 	<header class="section-heading mt-2">
-		<a href="{% url 'home' %}" class="btn btn-outline-primary float-right text-4xl">See all ads</a> 
+		<a href="{% url 'home' %}" class="btn btn-outline-primary float-right text-2xl">See all ads</a> 
 		<h3 class="section-title">{{ expatad_count}} Popular Sites Found</h3>
 	</header>
 	
@@ -85,7 +85,7 @@
 				<div class="w-full bg-sky-100 rounded-xl "> -->
 						{% if links %}
 							{% for category in links %}
-								<a href="{{ category.get_url }}" class="btn btn-outline-info text-uppercase font-weight-bold text-4xl m-2 hover:scale-125 duration-1000 ">{{ category.name }}</a>
+								<a href="{{ category.get_url }}" class="btn btn-outline-info text-uppercase font-weight-bold m-2 hover:scale-125 duration-1000 ">{{ category.name }}</a>
 							{% endfor %}
 						{% endif %}
 				
