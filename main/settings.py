@@ -46,8 +46,8 @@ SECRET_KEY = env('SECRET_KEY')
 #DEBUG = env('DEBUG', cast=bool)
 
 
-ALLOWED_HOSTS = ['*']
-#ALLOWED_HOSTS = ['yourdomain.com', '127.0.0.1', 'localhost']
+#ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://www.hydinsaudi.com/', 'https://web-production-8948.up.railway.app/','127.0.0.1', 'localhost']
 
 # Application definition
 
