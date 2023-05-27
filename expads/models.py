@@ -50,12 +50,6 @@ class Category(models.Model):
     thumbnail = models.ImageField(upload_to='users/thumnail', blank=True, null=True)   
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-
-
-    class Meta:
-        ordering = ('-created','-updated')
-        verbose_name = 'category'
-        verbose_name_plural = 'categories'
         
     def clean(self):
         self.category_name = self.name.capitalize()
@@ -63,6 +57,11 @@ class Category(models.Model):
     def get_url(self):
         return reverse('expads_by_category', args=[self.slug])
 
+    class Meta:
+        ordering = ('-created','-updated')
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
+        
     def __str__(self):
         return self.name
 
@@ -87,6 +86,9 @@ class Expatad(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    def delete(self):
+        self.cover_photo.delete()
+        super().delete()
 
     class Meta:
         ordering = ('-created','-updated')
@@ -95,10 +97,6 @@ class Expatad(models.Model):
 
     def __str__(self):
         return self.fullname
-
-    def delete(self):
-        self.cover_photo.delete()
-        super().delete()
 
 
 class ExpatImage(models.Model):
