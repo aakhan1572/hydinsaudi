@@ -241,9 +241,9 @@ def updatead(request,id):
         if fm.is_valid():
             expatad = Expatad.objects.get(id=id)
             exp=Expatad.objects.get(id=id)
-            expc=ExpatImage.objects.filter(id=exp.id)
+            #expc=ExpatImage.objects.get(id=exp.id)
             exp.delete()
-            expc.delete()
+            #expc.delete()
             fm.save()
             for image in images_list:
                 Expatad_images = ExpatImage.objects.create(
