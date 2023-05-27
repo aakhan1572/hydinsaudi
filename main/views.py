@@ -1,7 +1,7 @@
 from django.shortcuts import render
 #from main.forms import ExpatadFilterform
 from expads.models import Expatad
-from main.filters import Expatadfilter
+from .filters import Expatadfilter
 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
@@ -9,7 +9,7 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 def home(request):
     expatad_filter = Expatadfilter(request.GET, queryset=Expatad.objects.all().filter(is_active=True))
-    print(expatad_filter)
+    #print(expatad_filter)
     expatads = expatad_filter.qs
     expatad_count = expatads.count()
     #expatad_count = expatad_filter.qs.count()
