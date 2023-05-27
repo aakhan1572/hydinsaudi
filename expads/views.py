@@ -218,7 +218,6 @@ def deletead(request,id):
 
 @login_required(login_url='login')
 def delete_ad(request, id):
-    print(id)
     expatad = get_object_or_404(Expatad, id=id)
     #expatimages=ExpatImage.objects.get(id=expatad.id)
     #print(expatimages.id)
