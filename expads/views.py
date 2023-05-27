@@ -218,9 +218,13 @@ def deletead(request,id):
 
 @login_required(login_url='login')
 def delete_ad(request, id):
-    expatad = get_object_or_404(Expatad, id=id)
     print(id)
+    expatad = get_object_or_404(Expatad, id=id)
+    #expatimages=ExpatImage.objects.get(id=expatad.id)
+    #print(expatimages.id)
+    #print(id)
     expatad.delete()
+    #expatimages.delete()
     messages.success(request, 'Your Ad has been deleted successfully!')
     return redirect('home')
 
@@ -237,7 +241,9 @@ def updatead(request,id):
         if fm.is_valid():
             expatad = Expatad.objects.get(id=id)
             exp=Expatad.objects.get(id=id)
+            expc=ExpatImage.objects.filter(id=exp.id)
             exp.delete()
+            expc.delete()
             fm.save()
             for image in images_list:
                 Expatad_images = ExpatImage.objects.create(
