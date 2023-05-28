@@ -11,24 +11,6 @@ from django import conf
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = "django-insecure-w6#d!svwx232+@d!8zyztyf!%vvf6xa_$i1w49zzo_1uqgn2vt"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-
-#ALLOWED_HOSTS = []
-#SECRET_KEY = config('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-#DEBUG = config('DEBUG', cast=bool)
-
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, True)
@@ -37,14 +19,7 @@ env = environ.Env(
 environ.Env.read_env(BASE_DIR/'.env')
 # False if not in os.environ because of casting above
 DEBUG = env('DEBUG')
-# Raises Django's ImproperlyConfigured
-# exception if SECRET_KEY not in os.environ
 SECRET_KEY = env('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-#DEBUG = env('DEBUG', cast=bool)
-
 
 ALLOWED_HOSTS = ['*']
 #ALLOWED_HOSTS = ['https://www.hydinsaudi.com/', 'https://web-production-8948.up.railway.app/','https://web-production-9ba7.up.railway.app','127.0.0.1', 'localhost']
@@ -151,25 +126,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-#STATIC_URL = "static/"
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
-
-
-#STATIC_URL = '/static/'
-#STATIC_ROOT = BASE_DIR/'static'
-
-#STATIC_ROOT = os.path.join(BASE_DIR,"static")
-#STATIC_ROOT = os.path.join(BASE_DIR,"staticfiles")
-#STATICFILES_DIRS = [os.path.join(BASE_DIR,"static")]
-
-# Media files configuration
-
 STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR/'static'
@@ -177,9 +133,6 @@ STATICFILES_DIRS = ['main/static']
 
 STATIC_ROOT = os.path.join(BASE_DIR,"/static")
 STATICFILES_DIRS = [os.path.join(BASE_DIR,"static")]
-
-
-
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/'media'
@@ -293,14 +246,6 @@ else:
             'HOST': env('LDB_HOST'),
         }
     } """
-#    CSRF_COOKIE_SECURE = False
-#    SECURE_CONTENT_TYPE_NOSNIFF = False
-#    SECURE_BROWSER_XSS_FILTER = False
-#    SESSION_COOKIE_SECURE = False
-#    SECURE_SSL_REDIRECT = False
-#    SECURE_HSTS_INCLUDE_SUBDOMAINS = False
-#    SECURE_HSTS_PRELOAD = False
-
 
 
 #print(f"SECURE_SSL_REDIRECT = {SECURE_SSL_REDIRECT}")
