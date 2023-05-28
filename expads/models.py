@@ -90,6 +90,10 @@ class Expatad(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    def delete(self):
+        self.cover_photo.delete()
+        super().delete()  
+
     class Meta:
         ordering = ('-created','-updated')
         verbose_name = 'expatad'
@@ -155,8 +159,8 @@ def delete_file(sender, instance, *args, **kwargs):
     if instance.images:
         _delete_file(instance.images.path)       
 
-@receiver(models.signals.post_delete, sender=Expatad)
+""" @receiver(models.signals.post_delete, sender=Expatad)
 def delete_file(sender, instance, *args, **kwargs):
-    """ Deletes thumbnail files on `post_delete` """
+   
     if instance.cover_photo:
-        _delete_file(instance.cover_photo.path)
+        _delete_file(instance.cover_photo.path) """
