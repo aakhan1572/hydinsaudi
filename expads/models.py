@@ -1,6 +1,5 @@
 import os
 from django.db import models
-#from django.contrib.auth.models import User
 from accounts.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.urls import reverse
@@ -8,8 +7,6 @@ from sorl.thumbnail import get_thumbnail
 from django.dispatch import receiver
 
 from phonenumber_field.modelfields import PhoneNumberField
-#from django.db.models.signals import post_delete
-#from accounts.utils import file_cleanup
 
 class Countrycode(models.Model):
     name = models.CharField(max_length=128)
@@ -86,13 +83,9 @@ class Expatad(models.Model):
     price = models.DecimalField(max_digits=15, decimal_places=2)
     Description = models.CharField(max_length=500)
     is_active = models.BooleanField(default=True)
-    cover_photo = models.ImageField(upload_to='users/cover_photos', blank=True, null=True)    
+    cover_photo = models.FileField(upload_to='users/cover_photos', blank=True, null=True)    
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-
-    def delete(self):
-        self.cover_photo.delete()
-        super().delete()  
 
     class Meta:
         ordering = ('-created','-updated')
@@ -112,10 +105,6 @@ class ExpatImage(models.Model):
         if self.images:
             return get_thumbnail(self.images, '50x50', quality=90)
         return None
-
-    def delete(self):
-        self.images.delete()
-        super().delete()            
     
     def __str__(self):
         return self.expatads.contactno
@@ -148,19 +137,13 @@ class Interested(models.Model):
 
 
 
-def _delete_file(path):
-   """ Deletes file from filesystem. """
-   if os.path.isfile(path):
-       os.remove(path)
+@receiver(models.signals.post_delete, sender=Expatad)
+def remove_file_from_s3(sender, instance, using, **kwargs):
+    instance.cover_photo.delete(save=False)
 
 @receiver(models.signals.post_delete, sender=ExpatImage)
-def delete_file(sender, instance, *args, **kwargs):
-    """ Deletes image files on `post_delete` """
-    if instance.images:
-        _delete_file(instance.images.path)       
+def remove_file_from_s3(sender, instance, using, **kwargs):
+    instance.images.delete(save=False)
 
-""" @receiver(models.signals.post_delete, sender=Expatad)
-def delete_file(sender, instance, *args, **kwargs):
-   
-    if instance.cover_photo:
-        _delete_file(instance.cover_photo.path) """
+
+# These two auto-delete files from filesystem when they are unneeded:
