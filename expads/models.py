@@ -4,11 +4,11 @@ from accounts.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.urls import reverse
 from sorl.thumbnail import get_thumbnail
-from django.dispatch import receiver
+#from django.dispatch import receiver
 
 from phonenumber_field.modelfields import PhoneNumberField
-from django.db.models.signals import post_delete
-from accounts.utils import file_cleanup
+#from django.db.models.signals import post_delete
+#from accounts.utils import file_cleanup
 
 class Countrycode(models.Model):
     name = models.CharField(max_length=128)
@@ -166,15 +166,15 @@ class Interested(models.Model):
         return self.fullname
 
 
-import os
-def _delete_file(path):
-   """ Deletes file from filesystem. """
-   if os.path.isfile(path):
-       os.remove(path)
+#import os
+#def _delete_file(path):
+#   """ Deletes file from filesystem. """
+#   if os.path.isfile(path):
+#       os.remove(path)
 
-@receiver(models.signals.post_delete, sender=ExpatImage)
-def delete_file(sender, instance, *args, **kwargs):
-    """ Deletes image files on `post_delete` """
-    if instance.images:
-        _delete_file(instance.images.path)       
+#@receiver(models.signals.post_delete, sender=ExpatImage)
+#def delete_file(sender, instance, *args, **kwargs):
+#    """ Deletes image files on `post_delete` """
+#    if instance.images:
+#        _delete_file(instance.images.path)       
 
