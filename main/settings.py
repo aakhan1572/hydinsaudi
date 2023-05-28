@@ -47,7 +47,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 
 #ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['https://www.hydinsaudi.com/', 'https://web-production-8948.up.railway.app/','127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['https://www.hydinsaudi.com/', 'https://web-production-8948.up.railway.app/','https://web-production-9ba7.up.railway.app','127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -228,6 +228,7 @@ if DEBUG is False:
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_BROWSER_XSS_FILTER = True
     SESSION_COOKIE_SECURE = True
+    USE_X_FORWARDED_HOST=True
     #X_FRAME_OPTIONS = 'DENY'
     SECURE_SSL_REDIRECT = True
     SECURE_HSTS_SECONDS = 31536000 # > 6 months (197 days)
