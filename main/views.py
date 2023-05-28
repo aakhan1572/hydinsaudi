@@ -24,24 +24,6 @@ def home(request):
         'expatads_list': expatad_filter.qs,
         'expatads': paged_expatads,
         'expatad_count' : expatad_count,
-    } 
+    }    
     return render(request, 'home.html', context)
 
-
-
-
-""" from django.shortcuts import render
-from main.forms import ExpatadFilterform
-from expads.models import Expatad
-
-def home(request):
-    expatads = Expatad.objects.all().filter(is_active=True)
-
-    expatad_count = expatads.count()
-    context = {
-#        'expatads': expatads,
-        'expatad_count' : expatad_count,
-        'form' : ExpatadFilterform(),
-        'expatads': Expatad.objects.all().filter(is_active=True)
-    } 
-    return render(request, 'home.html', context) """
