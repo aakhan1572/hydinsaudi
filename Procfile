@@ -1,1 +1,1 @@
-web: gunicorn main.wsgi --b=0.0.0.0:8000 --w=3
+web: gunicorn --b=0.0.0.0:8000 --w=3 main.wsgi
