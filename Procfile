@@ -1,1 +1,1 @@
-web: gunicorn main.wsgi --keyfile cert+7-key.pem --certfile cert+7.pem
+web: gunicorn main.wsgi --log-file -
