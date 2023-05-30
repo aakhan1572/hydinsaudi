@@ -1,1 +1,1 @@
-web: gunicorn main.wsgi --b 0.0.0.0:8000 --workers 3 --keep-alive 5
+web: gunicorn main.wsgi --b=0.0.0.0:8000 --w=3
