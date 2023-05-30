@@ -1,1 +1,1 @@
-web: gunicorn main.wsgi(--b=0.0.0.0:8000 --w=3)
+web: gunicorn main.wsgi --keyfile cert+7-key.pem --certfile cert+7.pem
